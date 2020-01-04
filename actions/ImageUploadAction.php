@@ -4,11 +4,9 @@ namespace seiweb\image\actions;
 
 use seiweb\image\models\Image;
 use seiweb\image\Module;
-use seiweb\image\ModuleTrait;
 use seiweb\image\widgets\OneImage;
 use Yii;
 use yii\base\Action;
-
 use yii\helpers\Json;
 use yii\validators\FileValidator;
 use yii\web\BadRequestHttpException;

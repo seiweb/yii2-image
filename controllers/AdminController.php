@@ -3,21 +3,13 @@
 namespace seiweb\image\controllers;
 
 use Intervention\Image\Exception\NotFoundException;
+use seiweb\image\models\Image;
 use seiweb\image\Module;
 use seiweb\image\widgets\OneImage;
 use seiweb\sortable\actions\SortableGridAction;
-
-use seiweb\image\models\Image;
-use seiweb\image\ModuleTrait;
 use Yii;
-use yii\base\Action;
-
-use yii\bootstrap\BootstrapAsset;
 use yii\db\Query;
 use yii\helpers\Json;
-use yii\validators\FileValidator;
-use yii\web\BadRequestHttpException;
-use yii\web\UploadedFile;
 
 /**
  * Created by PhpStorm.

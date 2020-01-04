@@ -16,8 +16,6 @@ use yii\widgets\InputWidget;
 
 class AdminImages extends InputWidget
 {
-    use ModuleTrait;
-
     public $replace = false;
     public $multiple = true;
    // public $model_attribute = null;
@@ -39,7 +37,7 @@ class AdminImages extends InputWidget
             'pagination'=>['pageSize'=>100]
         ]);
 
-        \Yii::$app->getModule('swb_image');
+       // \Yii::$app->getModule('swb_image');
 
         return $this->render('images', [
             'model' => $this->model,

@@ -8,12 +8,8 @@
 
 namespace seiweb\image\widgets;
 
-use seiweb\image\behaviors\ImageBehavior;
 use seiweb\image\models\Image;
-use seiweb\image\ModuleTrait;
-use yii\base\Exception;
 use yii\base\Widget;
-use yii\data\ActiveDataProvider;
 
 /**Виджет выведет разметку для изображения в общем списке. Нужен для обновления картинки ajax
  * Class Image
