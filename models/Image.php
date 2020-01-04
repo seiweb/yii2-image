@@ -117,7 +117,7 @@ class Image extends \yii\db\ActiveRecord
     {
         $itemUrl =Url::to(Module::getInstance()->baseUrl.$this->storage->cacheDir.$this->storage->getSubDirectory($this));
 
-        $res = Url::base().$itemUrl
+        $res = $itemUrl
             . $this->storage->getFullSizeFile($this).'?'.$this->version;
         return $res;
     }
@@ -126,7 +126,7 @@ class Image extends \yii\db\ActiveRecord
     {
         $itemUrl=Url::to(Module::getInstance()->baseUrl.$this->storage->originalDir.$this->storage->getSubDirectory($this));
 
-        $res = Url::base().$itemUrl
+        $res = $itemUrl
             . $this->file_name;
         return $res;
     }
@@ -138,7 +138,7 @@ class Image extends \yii\db\ActiveRecord
 
         $itemUrl=Url::to(Module::getInstance()->baseUrl.$this->storage->cacheDir.$this->storage->getSubDirectory($this));
 
-        $res = Url::base().$itemUrl
+        $res = $itemUrl
             . $this->storage->getFitFile($this,$width,$height,$position).'?'.$this->version;
         return $res;
     }
@@ -146,7 +146,7 @@ class Image extends \yii\db\ActiveRecord
     public function getResizedUrl($width, $height, $keep_aspect_ratio = true)
     {
         $itemUrl=Url::to(Module::getInstance()->baseUrl.$this->storage->cacheDir.$this->storage->getSubDirectory($this));
-        $res = Url::base().$itemUrl
+        $res = $itemUrl
             . $this->storage->getResizedFile($this,$width, $height, $keep_aspect_ratio).'?'.$this->version;
 
         return $res;
