@@ -43,7 +43,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        $this->storage = Yii::createObject($this->components['storage']?$this->components['storage']:['class'=>'seiweb\image\storage\Storage']);
+        $this->storage = Yii::createObject(isset($this->components['storage'])?$this->components['storage']:['class'=>'seiweb\image\storage\Storage']);
         $this->imageManager = Yii::createObject($this->components['imageManager']);
     }
 }
