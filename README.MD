@@ -27,3 +27,8 @@ $ composer require seiweb/yii2-image "*"
         ],
     ]
 ```
+
+### Применение миграций
+```
+ php yii migrate/up --migrationPath=@seiweb/image/migrations
+```
