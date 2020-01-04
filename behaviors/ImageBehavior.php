@@ -47,17 +47,14 @@ class ImageBehavior extends Behavior
     {
         return [
             ActiveRecord::EVENT_AFTER_DELETE => function ($event) {
-                $this->deleteAllFiles();
+                $this->deleteAllFiles($this->attribute);
             },
         ];
     }
 
-    public function deleteAllFiles()
+    public function deleteAllFiles($attribute)
     {
-        $condition = ['and', 'model_id=:id', 'model_class=:m'];
-        $params = ['id' => $this->owner->primaryKey, ':m' => $this->owner->className()];
-
-        foreach ($this->owner->images as $image) {
+        foreach ($this->getImages($attribute)->all() as $image) {
             $image->delete();
         }
     }
