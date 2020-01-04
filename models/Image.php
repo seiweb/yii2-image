@@ -37,6 +37,7 @@ class Image extends \yii\db\ActiveRecord
     {
         parent::init();
         $this->storage = Module::getInstance()->storage;
+
     }
 
     /**

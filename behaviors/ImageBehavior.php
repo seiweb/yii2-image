@@ -62,12 +62,6 @@ class ImageBehavior extends Behavior
         }
     }
 
-    public function attach($owner)
-    {
-        parent::attach($owner);
-        \Yii::$app->getModule('swb_image');
-    }
-
     public function attachFile($file, $model_attribute = 0, $replace = false)
     {
         $file->model_class = $this->owner->className();

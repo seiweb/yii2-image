@@ -235,4 +235,9 @@ class Storage extends BaseObject
         $this->flushCache($image_ar);
         // $this->updateCounters(['version'=>1]);
     }
+
+    public function getOriginalPath(Image $image_ar)
+    {
+        return Yii::getAlias($this->filesRoot . DIRECTORY_SEPARATOR . $this->originalDir . DIRECTORY_SEPARATOR . $this->getSubDirectory($image_ar) . DIRECTORY_SEPARATOR).$image_ar->file_name;
+    }
 }

@@ -37,8 +37,6 @@ class AdminImages extends InputWidget
             'pagination'=>['pageSize'=>100]
         ]);
 
-       // \Yii::$app->getModule('swb_image');
-
         return $this->render('images', [
             'model' => $this->model,
             'imagesProvider'=>$imagesProvider,

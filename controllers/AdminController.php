@@ -109,6 +109,6 @@ class AdminController extends \yii\web\Controller
         if(!isset($image))
             throw new NotFoundException();
 
-        return Yii::$app->response->sendFile($image->getOriginalPath().$image->file_name);
+        return Yii::$app->response->sendFile(Module::getInstance()->storage->getOriginalPath($image));
     }
 }
