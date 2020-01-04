@@ -52,7 +52,7 @@ class ImageBehavior extends Behavior
         ];
     }
 
-    public function deleteAllFiles($attribute)
+    public function deleteAllFiles($attribute = null)
     {
         foreach ($this->getImages($attribute)->all() as $image) {
             $image->delete();
