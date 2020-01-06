@@ -16,7 +16,7 @@ $ composer require seiweb/yii2-image "*"
                 ],
                 'imageManager'=>[
                     'class'=>\Intervention\Image\ImageManager::class,
-                    'driver'=>'gd' //or imagick
+                    'config'=>['driver'=>'imagick'] //or imagick
                 ]
             ],
             'originalResizeTo'=>[1280,768], //уменьшать загружаемый файл до
