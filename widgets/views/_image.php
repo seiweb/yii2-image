@@ -1,6 +1,6 @@
 <?php /** @var $model \seiweb\image\models\Image */ ?>
 <div class='col-sm-2 col-xs-6 preview' data-id='<?= $model->id ?>'>
-    <?= \yii\bootstrap\Html::img($model->getFitUrl(300, 300), ['class' => 'img-responsive']) ?>
+    <?= \yii\bootstrap\Html::img($model->getFitUrl(300, 300), ['class' => 'img-responsive','style'=>'display:block;mih-height:100px']) ?>
     <div class='file-footer-buttons1'>
         <?= \yii\helpers\Html::a('<i class=\'fas fa-file-download\' aria-hidden=\'true\'></i>',['/swb_image/admin/download','id'=>$model->id],['class'=>'btn btn-success btn-xs']) ?>
         <button type='button' data-url='<?= \yii\helpers\Url::to(['/swb_image/admin/update', 'id' => $model->id]) ?>'
