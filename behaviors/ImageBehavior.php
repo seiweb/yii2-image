@@ -17,7 +17,7 @@ use yii\db\ActiveRecord;
  */
 class ImageBehavior extends Behavior
 {
-    public $modelKey = null;
+    public $modelKey = 'id';
     public $attribute;
     public $multiple = true;
 
@@ -32,7 +32,14 @@ class ImageBehavior extends Behavior
      */
     public function getImages($model_attribute = null, $one = false)
     {
-        $q = $this->owner->hasMany(Image::className(), ['model_id' => 'id'])
+        /**
+         * @var $this->owner ActiveRecord
+         */
+
+        //var_dump(($this->owner)::getTableSchema()->primaryKey);die;
+
+        //$q = $this->owner->hasMany(Image::className(), ['model_id' => ($this->owner)::getTableSchema()->primaryKey[0]])
+        $q = $this->owner->hasMany(Image::className(), ['model_id' => $this->modelKey])
             ->where(Image::tableName() . '.model_class=:m_name', [':m_name' => $this->owner->className()])->orderBy('sort');
         if ($model_attribute)
             $q->andWhere(['model_attribute' => $model_attribute]);
