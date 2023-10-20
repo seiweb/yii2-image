@@ -141,9 +141,9 @@ $this->registerJs($sortableJS,View::POS_READY,'images_js');
 
 
 <?php
-yii\bootstrap\Modal::begin([
+\yii\bootstrap4\Modal::begin([
     'headerOptions' => ['id' => 'modalHeader'],
-    'header' => null,
+    //'header' => null,
     'closeButton' => false,
     'id' => 'modal',
     'size' => 'modal-lg',
@@ -151,7 +151,7 @@ yii\bootstrap\Modal::begin([
     'clientOptions' => false,
 ]);
 echo "<div id='modalContent'>Загрузка</div>";
-yii\bootstrap\Modal::end();
+\yii\bootstrap4\Modal::end();
 ?>
 
 
