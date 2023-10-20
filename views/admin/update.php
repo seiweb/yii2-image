@@ -2,9 +2,9 @@
 
 /** @var $image \seiweb\image\models\Image */
 
-use yii\bootstrap\ActiveForm;
-use yii\bootstrap\Html;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 $form = ActiveForm::begin([
     'id' => 'image_form',
