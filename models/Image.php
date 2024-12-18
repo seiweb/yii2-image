@@ -136,6 +136,9 @@ class Image extends \yii\db\ActiveRecord
         if ($position == null)
             $position = $this->position;
 
+        if ($position == null)
+            $position = 'center';
+
         $itemUrl=Url::to(Module::getInstance()->baseUrl.$this->storage->cacheDir.$this->storage->getSubDirectory($this));
 
         $res = $itemUrl
