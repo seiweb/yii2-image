@@ -18,7 +18,7 @@
   "minimum-stability": "stable",
   "require": {
     "yiisoft/yii2": "~2.0.14",
-    "intervention/image": "^2.3",
+    "intervention/image": "*",
     "kartik-v/yii2-widgets": "v3.4.1",
     "kartik-v/bootstrap-fileinput": "v4.5.2",
     "seiweb/yii2-sortable": "^1.0",
