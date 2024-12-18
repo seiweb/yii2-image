@@ -68,7 +68,7 @@ class Storage extends BaseObject
 
 
             /** @var \Intervention\Image\Image $image */
-            $image = Module::getInstance()->imageManager->make($file->tempName);
+            $image = Module::getInstance()->imageManager->read($file->tempName);
 
 
             $image->resize(Module::getInstance()->originalResizeTo[0], Module::getInstance()->originalResizeTo[1], function ($c) {
@@ -121,10 +121,10 @@ class Storage extends BaseObject
 
             BaseFileHelper::createDirectory($cacheDir);
 
-            $image = Module::getInstance()->imageManager->make($origDir . $image_ar->file_name);
+            $image = Module::getInstance()->imageManager->read($origDir . $image_ar->file_name);
 
             $image
-                ->fit($width, $height, null, $position)
+                ->cover($width, $height,  $position)
                 ->save($filePath, Module::getInstance()->cachedQuality);
 
             if (!file_exists($filePath)) {
@@ -143,8 +143,6 @@ class Storage extends BaseObject
      */
     public function getFullSizeFile(Image $image_ar,$text = null)
     {
-        $text = "ШИНЫ С ПРОБЕГОМ";
-
         $fileName = $image_ar->file_name;
 
         $fileName = str_replace(".jpg",'.webp',$fileName);
@@ -228,7 +226,7 @@ class Storage extends BaseObject
 
             BaseFileHelper::createDirectory($cacheDir);
 
-            $image = Module::getInstance()->imageManager->make($origDir . $image_ar->file_name);
+            $image = Module::getInstance()->imageManager->read($origDir . $image_ar->file_name);
 
             if ($keep_aspect_ratio)
                 $image->resize($width, $height, function ($c) {
@@ -266,7 +264,7 @@ class Storage extends BaseObject
     public function rotate(Image $image_ar, $angle)
     {
         $origDir = Yii::getAlias($this->filesRoot . DIRECTORY_SEPARATOR . $this->originalDir . DIRECTORY_SEPARATOR . $this->getSubDirectory($image_ar) . DIRECTORY_SEPARATOR);
-        $image = Module::getInstance()->imageManager->make($origDir . $image_ar->file_name);
+        $image = Module::getInstance()->imageManager->read($origDir . $image_ar->file_name);
         $image->rotate($angle);
         $image->save();
         $this->flushCache($image_ar);
