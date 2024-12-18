@@ -23,7 +23,6 @@
     "kartik-v/bootstrap-fileinput": "v4.5.2",
     "seiweb/yii2-sortable": "^1.0",
     "bower-asset/font-awesome": "^5.12",
-    "timurmelnikov/yii2-loading-overlay": "~1.0.0",
     "bower-asset/noty": "^3.1"
   },
   "autoload": {
