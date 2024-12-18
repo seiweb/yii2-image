@@ -4,6 +4,7 @@ namespace seiweb\image;
 
 
 use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 use seiweb\image\storage\Storage;
 use Yii;
 
@@ -44,6 +45,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
         $this->storage = Yii::createObject(isset($this->components['storage'])?$this->components['storage']:['class'=>'seiweb\image\storage\Storage']);
-        $this->imageManager = Yii::createObject($this->components['imageManager']);
+        //$this->imageManager = Yii::createObject($this->components['imageManager']);
+        $this->imageManager = new ImageManager(new Driver());
     }
 }
