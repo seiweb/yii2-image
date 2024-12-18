@@ -113,12 +113,12 @@ class Image extends \yii\db\ActiveRecord
         return $res;
     }
 
-    public function getFullSizeUrl()
+    public function getFullSizeUrl($text = null)
     {
         $itemUrl =Url::to(Module::getInstance()->baseUrl.$this->storage->cacheDir.$this->storage->getSubDirectory($this));
 
         $res = $itemUrl
-            . $this->storage->getFullSizeFile($this).'?'.$this->version;
+            . $this->storage->getFullSizeFile($this, $text).'?'.$this->version;
         return $res;
     }
 
