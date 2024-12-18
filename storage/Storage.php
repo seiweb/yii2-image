@@ -93,7 +93,7 @@ class Storage extends BaseObject
             */
 
             $image->save($imageFileName, Module::getInstance()->originalQuality, Module::getInstance()->convertToJpg?'jpg':null);
-            $image_ar->size = $image->filesize();
+                       $image_ar->size = filesize($imageFileName);
             return $image_ar->save();
         }
         return false;
