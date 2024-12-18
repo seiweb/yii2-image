@@ -6,7 +6,7 @@ seiweb\sortable\assets\RubaxaAsset::register($this);
 seiweb\image\assets\NotyAsset::register($this);
 
 seiweb\image\assets\FontawesomeAsset::register($this);
-timurmelnikov\widgets\LoadingOverlayAsset::register($this);
+seiweb\image\assets\LoadingOverlayAsset::register($this);
 
 use kartik\widgets\FileInput;
 
