@@ -4,6 +4,9 @@
 namespace seiweb\image\storage;
 
 
+use Intervention\Image\Geometry\Factories\EllipseFactory;
+use Intervention\Image\Geometry\Factories\RectangleFactory;
+use Intervention\Image\Typography\FontFactory;
 use seiweb\image\models\Image;
 use seiweb\image\Module;
 use seiweb\image\ModuleTrait;
@@ -131,15 +134,25 @@ class Storage extends BaseObject
         return $fileName;
     }
 
+ 
     /**
-     * Копися ригинала изображение, используем, если нужны ватермарки
+     * Копия оригинала изображение, используем, для добавления текста
      * @param Image $image_ar
      * @return string
      * @throws Exception
      */
-    public function getFullSizeFile(Image $image_ar)
+    public function getFullSizeFile(Image $image_ar,$text = null)
     {
+        $text = "ШИНЫ С ПРОБЕГОМ";
+
         $fileName = $image_ar->file_name;
+
+        $fileName = str_replace(".jpg",'.webp',$fileName);
+
+        if($text)
+        $fileName = md5($text)."_".$fileName;
+
+
 
         $origDir = Yii::getAlias($this->filesRoot . DIRECTORY_SEPARATOR . $this->originalDir . DIRECTORY_SEPARATOR . $this->getSubDirectory($image_ar) . DIRECTORY_SEPARATOR);
         $cacheDir = Yii::getAlias($this->filesRoot . DIRECTORY_SEPARATOR . $this->cacheDir . DIRECTORY_SEPARATOR . $this->getSubDirectory($image_ar) . DIRECTORY_SEPARATOR);
@@ -150,13 +163,13 @@ class Storage extends BaseObject
 
             BaseFileHelper::createDirectory($cacheDir);
 
-            $image = Module::getInstance()->imageManager->make($origDir . $image_ar->file_name);
+            $image = Module::getInstance()->imageManager->read($origDir . $image_ar->file_name);
 
             //TODO watermark
 
             /*
             if(Module::getInstance()->watermarkFilePath!=null) {
-                $watermark = Module::getInstance()->imageManager->make(\Yii::getAlias(Module::getInstance()->watermarkFilePath));
+                $watermark = Module::getInstance()->imageManager->read(\Yii::getAlias(Module::getInstance()->watermarkFilePath));
                 $watermark->opacity(Module::getInstance()->watermarkOpacity);
                 if($image->width()>=$image->height())
                     $watermark->heighten($image->height());
@@ -166,7 +179,32 @@ class Storage extends BaseObject
             }
             */
 
-            $image->save($filePath, Module::getInstance()->cachedQuality);
+
+
+// write text to image
+
+
+            /** @var \Intervention\Image\Image $image */
+
+            $wdth = $image->width();
+
+
+        if($text)
+            $image->text($text, $image->width()/2, $image->height()-100, function (FontFactory $font) use ($wdth) {
+                $font->filename(Yii::getAlias("@common/Moderustic-Regular.ttf"));
+                $font->size(100);
+                $font->color('00a');
+                $font->stroke('fff', 3);
+                $font->align('center');
+                $font->valign('bottom');
+                $font->lineHeight(1.6);
+               // $font->angle(50);
+                $font->wrap($wdth*0.8);
+            });
+
+
+
+            $image->save($filePath);
 
             if (!file_exists($filePath)) {
                 throw new \Exception('Problem with image creating.');
@@ -174,7 +212,6 @@ class Storage extends BaseObject
         }
         return $fileName;
     }
-
     public function getResizedFile(Image $image_ar, $width, $height, $keep_aspect_ratio = false)
     {
 
