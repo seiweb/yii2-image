@@ -70,11 +70,14 @@ class Storage extends BaseObject
             /** @var \Intervention\Image\Image $image */
             $image = Module::getInstance()->imageManager->read($file->tempName);
 
-
+            /*
             $image->resize(Module::getInstance()->originalResizeTo[0], Module::getInstance()->originalResizeTo[1], function ($c) {
                 $c->aspectRatio();
                 $c->upsize();
             });
+            */
+
+            $image->scale(Module::getInstance()->originalResizeTo[0]);
 
             /*
             if (Module::getInstance()->originalResizeMethod != null) {
