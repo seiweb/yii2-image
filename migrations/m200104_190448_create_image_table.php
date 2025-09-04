@@ -1,7 +1,5 @@
 <?php
 
-namespace seiweb\image\migrations;
-
 use yii\db\Migration;
 
 /**
